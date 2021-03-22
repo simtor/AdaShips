@@ -5,13 +5,29 @@
 #include <vector>
 using namespace std;
 
+string name;
+string funds;
+int supplies, turns;
+std::vector<int> x;
+std::vector<string> shipName; 
+
 void readConfig(){
   std::ifstream file("adaship_config.ini");
-  std::string str;
-  while (std::getline(file, str)) {
-    std::cout <<str<< "\n";
-  }
-  return;
+  std::string line;
+  while (std::getline(file, line)) {
+    stringstream ss(line);
+    // ss >> name >> supplies >> turns;
+    file >> name;
+    file >> funds;
+    file >> supplies;
+    std::cout <<line<< "\n";
+    std::cout<<name<<"\n";
+    std::cout<<funds<<"\n";
+    std::cout<<supplies<<"\n";
+    x.push_back(supplies);
+    shipName.push_back(funds);
+
+  } 
 }
 
 void getboard(){
