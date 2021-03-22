@@ -5,6 +5,11 @@
 #include <vector>
 using namespace std;
 
+const int rows = 10;
+const int columns = 10;
+int matrix[rows][columns];
+char grid[10][10];
+
 string name;
 string funds;
 int supplies, turns;
@@ -30,6 +35,7 @@ void readConfig(){
   } 
 }
 
+
 void getboard(){
 int boardwidth;
 int boardheight;
@@ -39,23 +45,6 @@ int boardheight;
 }
 
 bool gridMaker(){
-
-  // const int array = 10;
-  // int myArray[array] ;
-
-  // int my2Darray [array][array];
-  // for(size_t i=0; i < array; i++){
-  //   for(size_t k=0; k<array; i++){
-  //     my2Darray[i][k]=0;
-  //   }
-  // }
-
-  // for(size_t i=0; i < array; i++){
-  //   for(size_t k=0; k<array; i++){
-  //     std::cout<< my2Darray[i][k]<< " ";
-  //   }
-  //   std::cout<<"\n";
-  // }
     for(int i = 0; i < 10; i++) {  
     std::cout <<  i + 1 << "";
     for(int j = 0; j < 10; j++){
