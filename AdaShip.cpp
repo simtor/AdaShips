@@ -35,6 +35,36 @@ void readConfig(){
   } 
 }
 
+int colref_index(std::string coord) {
+//convert 'column reference' (A[a] = 0, B[b] = 2, .. Z[a] = 25, AA[aa], AB[bb]..ZZ[zz] = 701) to an index (0..701)
+//returns valid index (0..701), any negative values represent invalid column references i.e., not A[a]..ZZ[zz]
+if(coord.length() == 1) {//deal with single letter value (A = 0, B = 2 .. Z = 25)
+return toupper(int(coord[0])) - 65; // 65 represents ASCII 'A' 'A' - 65 = 0
+} else if(coord.length() == 2) {//deal with pair values (AA = 26, BA = 52, CA = 78 .. ZZ = 701)
+return ((toupper(int(coord[1])) - 65) + (toupper(int(coord[0])) - 64) * 26); // -64 to get base 1 thus avoiding 0 * n = 0 issue
+}
+return -1; //no match
+}
+
+
+std::string index_colref(int idx) {
+//convert index to 'column reference'; valid range 0 to 702 (ZZ)
+//invalid indexes return and empty string
+std::string coords = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+std::string reference = ""; //set default return
+
+if(idx >= 0 && idx <= ((26*26)+26)) { //check in valid range
+int x = idx/26; //check range; 0 if A..Z
+if(x == 0) {
+reference = coords[idx]; //return reference
+} else {
+idx = idx - (x * 26); //update index
+reference = coords[(x-1)]; //add initial column ref; A..Z
+reference += coords[idx]; //add secondary column ref; AA..ZZ
+}
+}
+return reference;
+}
 
 void getboard(){
 int boardwidth;
@@ -44,28 +74,28 @@ int boardheight;
   return;
 }
 
-bool gridMaker(){
-    for(int i = 0; i < 10; i++) {  
-    std::cout <<  i + 1 << "";
-    for(int j = 0; j < 10; j++){
-      std::cout <<" | ";
-    }
-    std::cout << std::endl;
-  }
-  std::string board[10][10] = {
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," ",""," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "},
-      {" "," "," "," "," "," "," "," "," "," "}
-    };
+// bool gridMaker(){
+//     for(int i = 0; i < 10; i++) {  
+//     std::cout <<  i + 1 << "";
+//     for(int j = 0; j < 10; j++){
+//       std::cout <<" | ";
+//     }
+//     std::cout << std::endl;
+//   }
+//   std::string board[10][10] = {
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," ",""," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "},
+//       {" "," "," "," "," "," "," "," "," "," "}
+//     };
 
-}
+// }
 
 int main() 
 {
