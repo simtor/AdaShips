@@ -66,12 +66,32 @@ reference += coords[idx]; //add secondary column ref; AA..ZZ
 return reference;
 }
 
-void getboard(){
-int boardwidth;
-int boardheight;
-  cin>>boardwidth;
-  cin>>boardheight;
-  return;
+void Clear()
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			matrix[i][j] = 0;
+		}//end for
+	}//end for
+}//end of clear
+
+
+void SetShips()
+{
+	int s = 0;
+	while (s < maxships)
+	{
+		int x = rand() % 10;
+		int y = rand() % 10;
+    std::cout<<x<<y<<"\n";
+		if (computer[x][y] != 1)
+		{
+			s++;
+			computer[x][y] = 1;
+		}
+	}
 }
 
 // bool gridMaker(){
