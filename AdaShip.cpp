@@ -117,6 +117,38 @@ void SetShips()
 
 // }
 
+void battleship(){
+	   int v1;
+	   int v2;//turn them into strings for the coodinates 
+     int v3;
+     int v4;//turn them into strings for the coodinates 
+     int boatSize=x[1];//The amount of places so it will be 5,4,3,2 ;
+     int amountLoop=0;
+     int decisionVF;
+    //  int s=v1;//make the variable changeable with v1
+     cout<<"Would you like vertical or horizontal: ";cin>>decisionVF;
+     cout<<"Insert row number: ";cin>>v2;
+  	 cout<<"Insert column letter: ";cin>>v1;
+     if(decisionVF==1){
+      int s=v2;
+      std::cout<<"\n"<<boatSize<<"\n";
+      while(amountLoop < boatSize) {
+        std::cout<<s<<v1<<"\n";
+      matrix[s][v1]=1;
+      amountLoop++;
+      s++;
+      }
+     }else{
+       int s=v2;
+      std::cout<<"\n"<<boatSize<<"\n";
+      while(amountLoop < boatSize) {
+        std::cout<<v2<<s<<"\n";
+      matrix[v1][s]=2;
+      amountLoop++;
+      s++;
+    }
+  }
+}
 int main() 
 {
     cout<<"AdaShip is a clone of the classic‘Battleship’game\n";
