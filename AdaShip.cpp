@@ -1,40 +1,30 @@
-#include <iostream>
-#include <thread>
-#include <string>
-#include <fstream>
-#include <vector>
-using namespace std;
+#include<iostream>
+using namespace std; 
 
 const int rows = 10;
-const int columns = 10;
-int matrix[rows][columns];
+const int elements = 10;
+const char isHit = 'H';
+// const int value=1;
+
+//num of total ships
+
+//define array
+int matrix[rows][elements];
 char grid[10][10];
+int maxships= 5;
+int value=1;
 
-string name;
-string funds;
-int supplies, turns;
-std::vector<int> x;
-std::vector<string> shipName; 
-
-void readConfig(){
-  std::ifstream file("adaship_config.ini");
-  std::string line;
-  while (std::getline(file, line)) {
-    stringstream ss(line);
-    // ss >> name >> supplies >> turns;
-    file >> name;
-    file >> funds;
-    file >> supplies;
-    std::cout <<line<< "\n";
-    std::cout<<name<<"\n";
-    std::cout<<funds<<"\n";
-    std::cout<<supplies<<"\n";
-    x.push_back(supplies);
-    shipName.push_back(funds);
-
-  } 
-}
-
+// void printGrid() {
+// 	// print the current grid
+// 	cout << endl;
+// 	for (int x = 0; x<10; x++) {
+// 		for (int y = 0; y<10; y++) {
+// 			cout << setw(2) << grid[x][y];
+// 		}
+// 		cout << endl;
+// 	}
+// 	cout << endl;
+// }//end of printGrid
 int colref_index(std::string coord) {
 //convert 'column reference' (A[a] = 0, B[b] = 2, .. Z[a] = 25, AA[aa], AB[bb]..ZZ[zz] = 701) to an index (0..701)
 //returns valid index (0..701), any negative values represent invalid column references i.e., not A[a]..ZZ[zz]
@@ -66,119 +56,130 @@ reference += coords[idx]; //add secondary column ref; AA..ZZ
 return reference;
 }
 
-void Clear()
+void createGrid() {
+	// create a blank grid   
+	for (int x = 1; x<10; x++) {
+		for (int y = 1; y<10; y++) {
+			grid[x][y] = '0';
+		}
+	}
+}//end of createGrid
+
+// void Show()
+// {
+// 	for (int i = 0; i < rows; i++)
+// 	{
+// 		for (int j = 0; j < elements; j++)
+// 		{
+// 			cout << matrix[i][j] << " ";
+// 		}//end for
+// 		cout << endl;
+// 	}//end for
+// }//end of show
+
+void Show()
 {
-	for (int i = 0; i < rows; i++)
+	// for (int row = 0; row <20; ++row)
+	// {
+	// 	for (int column = 0; column < 20; ++column)
+	// 	{
+	// 		// matrix[row][column] = value * value;
+	// 		value++;
+	// 	}// end for (column=0; column<10; column++)
+	// } //end for (row=0; row<10; row++)
+
+	std::cout << "↓COL/ROW→ \t";
+	for (int column = 1; column < 10; ++column)
+	std::cout << column<< "\t";
+	std::cout << "\n";
+	for ( int row = 1; row < 10; ++row)
 	{
-		for (int j = 0; j < columns; j++)
-		{
-			matrix[i][j] = 0;
-		}//end for
-	}//end for
-}//end of clear
-
-
+        std::cout << row<< "\t\t";
+        for (int column = 1; column < 10; ++column)
+        {
+           // std::cout << column + 1 << "\t";
+		    {
+            
+			/*if (column!= 0) cout << column << "\t" << */cout << matrix[row][column] << "\t";
+		    }//end for (column=0; column<10; column++)
+        }
+		cout << endl;
+	} //end for (row=0; row<10; row++)
+}
 void SetShips()
 {
 	int s = 0;
 	while (s < maxships)
 	{
-		int x = rand() % 10;
-		int y = rand() % 10;
-    std::cout<<x<<y<<"\n";
-		if (computer[x][y] != 1)
+		int x = rand() % rows;
+		int y = rand() % elements;
+		if (matrix[x][y] != 1)
 		{
 			s++;
-			computer[x][y] = 1;
+			matrix[x][y] = 1;
+		}//end if
+	}//end while
+}//end of SetShips
+
+void printGrid() {
+	// print the current grid
+	cout << endl;
+	for (int x = 0; x<10; x++) {
+		for (int y = 0; y<10; y++) {
+			cout << grid[x][y];
 		}
+		cout << endl;
 	}
-}
+	cout << endl;
+}//end of printGrid
 
-// bool gridMaker(){
-//     for(int i = 0; i < 10; i++) {  
-//     std::cout <<  i + 1 << "";
-//     for(int j = 0; j < 10; j++){
-//       std::cout <<" | ";
-//     }
-//     std::cout << std::endl;
-//   }
-//   std::string board[10][10] = {
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," ",""," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "},
-//       {" "," "," "," "," "," "," "," "," "," "}
-//     };
-
-// }
-
-void battleship(){
-	   int v1;
-	   int v2;//turn them into strings for the coodinates 
-     int v3;
-     int v4;//turn them into strings for the coodinates 
-     int boatSize=x[1];//The amount of places so it will be 5,4,3,2 ;
-     int amountLoop=0;
-     int decisionVF;
-    //  int s=v1;//make the variable changeable with v1
-     cout<<"Would you like vertical or horizontal: ";cin>>decisionVF;
-     cout<<"Insert row number: ";cin>>v2;
-  	 cout<<"Insert column letter: ";cin>>v1;
-     if(decisionVF==1){
-      int s=v2;
-      std::cout<<"\n"<<boatSize<<"\n";
-      while(amountLoop < boatSize) {
-        std::cout<<s<<v1<<"\n";
-      matrix[s][v1]=1;
-      amountLoop++;
-      s++;
-      }
-     }else{
-       int s=v2;
-      std::cout<<"\n"<<boatSize<<"\n";
-      while(amountLoop < boatSize) {
-        std::cout<<v2<<s<<"\n";
-      matrix[v1][s]=2;
-      amountLoop++;
-      s++;
-    }
-  }
-}
-int main() 
+bool Attack(int x, int y)
 {
-    cout<<"AdaShip is a clone of the classic‘Battleship’game\n";
-    cout<<"-----------------MENU-----------------\n";
-    cout<<" 1.One player v computer game\n 2.Quit\n";
-    string choose; 
-    cin >> choose;
-    readConfig();
-    getboard();
-    gridMaker();
-  // const int array = 10;
-  // int myArray[array];
+	if (matrix[x][y] == 1)
+	{
+		matrix[x][y] = 2;
+		return true;
+	}//end if
+	return false;
+}//end of Attack
 
-  // int my2Darray [array][array];
-  // for(size_t i=0; i < array; i++)
-  // {
-  //   for(size_t k=0; k<array; i++)
-  //   {
-  //     my2Darray[i][k]=0;
-  //   }
-  // }
-  // for(size_t i=0; i < array; i++)
-  // {
-  //   for(size_t k=0; k<array; i++)
-  //   {
-  //     std::cout<< my2Darray[i][k]<< " ";
-  //   }
-  //   std::cout<<"\n";
-  // }
-  // system ("PAUSE");
-  return 0;
+void update(){
+	int r;
+	int z;
+	//  int v1 = rand() % 100;0
+	//  int v2 = rand() % 100;
+	 int v1;
+	 int v2;
+	 int idx = colref_index("B");
+	std::string colref = index_colref(idx);
+	std::cout << "\nindex value: " << idx;
+	std::cout << "\ncolumn reference: " << colref;
+	std::cout << "\n";
+	 std::cout<<v1<<"\n";
+	 std::cout<<v2<<"\n";   
+    //  v1 >> matrix[0][0];
+	// for(int i=0; i<2; i++){
+	//getline(cin, matrix[v1][v2]);
+  	cout<<"Insert element1: ";cin>>v1;
+	cout<<"Insert element2: ";cin>>v2;
+	//   cin>>v2;
+	
+  	matrix[v1][v2]= 1;//fix this
+	// }
+	// std::cin >> matrix[v1][v2];
+	// matrix[r][z] = rand();
 }
+int main()
+{
+    // printGrid();
+    // createGrid();
+	update();
+    Show();
+
+	// SetShips();
+
+	
+    // cout<<matrix[3][3];
+}
+
 //Created by Simone Ram
