@@ -70,6 +70,11 @@ Boat: Patrol Boat, 2
 
 # Initial object-oriented design ideas and plan of phased breakdown into smaller tasks:
 
+If you look at my code you can see that I broke down the tasks into functions, as at the start of the development phase I decide to got with the stagy divide and conquer, at the start of the development phase, I started working on the board from my research the best option was to have a 2D array to store boats/ships.  After finding a method that allows me to create a matrix I move on to start looking for a way to populate the board with ships. I was lucky that I was using a matrix as it was simple to push items into the arrays by doing [x][y]=2. 
+
+After getting comfortable with the matrix I was able to randomly populate the computer board with ships and random fire torpedos into the user board. 
+As you can see above me I have a list of tasks which I used to track my development, this list helps me because I knew what I had to do and the research helped me a lot as well. 
+
 
 # Reflection on key design challenges, innovations and how I solved them
 
