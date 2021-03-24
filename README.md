@@ -13,7 +13,7 @@ My solution was to create two boards using 2D arrays. It would allow me to push 
 My UML represents how my code works and how they function are related to each other. As my code doesn't have classes 
 I didn't use classes or serrated the code into files. The UML is a way to visualize the way the code works.
 
-![alt text](https://github.com/simtor/AdaShips/blob/main/UMLBS%20(4).png)
+![alt text](https://github.com/simtor/AdaShips/blob/main/Screenshot%202021-03-24%20at%2012.01.33.png)
 
 # Initial working plan, overall approach, development strategy and approach to quality:
 My strategy was to divide and conquer as if I break down the problem into small components it would allow me to work more efficiently. I started to do some research and then build a small prototype and then made the prototype more efficient and robust.
