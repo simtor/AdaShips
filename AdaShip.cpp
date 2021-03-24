@@ -322,51 +322,38 @@ void SetShips()
 
 
 void masterBoatSetUp(){
-	  //  int v1;
-	  //  int v2;//turn them into strings for the coodinates
-    //  srand((unsigned) time(0));
-    //  int v1 = (rand() % 5) + 1;
-    //  int v2 = (rand() % 5) + 1; 
-     int v3=0;
-     int v4=0;//turn them into strings for the coodinates 
-     //The amount of places so it will be 5,4,3,2 ;
+     int amountOfAiBoats=0;
+     int nameOfAiBoats=0;
      int amountLoop=0;
-     srand((unsigned) time(0));
-    while(v3<5){
-     int boatSize=x[v3];
-     int v1 = (rand() % 7) + 1;
-     int v2 = (rand() % 7) + 1;
-     int decisionVF = (rand() % 2) +1;
-      std::cout<<"Your setting up boat "<<shipName[v4]<<" and it takes up "<<boatSize<<" spaces"<<"\n";
-    //   cout<<"Would you like vertical or horizontal: ";cin>>decisionVF;
-    //  cout<<"Insert row number: ";cin>>v2;
-  	//  cout<<"Insert column letter: ";cin>>v1;
-     if(decisionVF==1){
-      int s=v2;
-      std::cout<<"\n"<<boatSize<<"\n";
+     srand((unsigned) time(NULL));//Random seed 
+    while(amountOfAiBoats<5){
+     int boatSize=x[amountOfAiBoats];
+     int pointerOfAiBoat = (rand() % 7) + 1;//Generates random numbers for y-axis
+     int pointerOfAiBoat2 = (rand() % 7) + 1;//Generates random number for x-axis 
+     int decisionVF = (rand() % 2) +1;//Generates random number between 1-2 for the vertical or hozontal placement 
+    //if statement for positioning the boats vertically or horizontally 
+    if(decisionVF==1){
+      int s=pointerOfAiBoat;
+      //while lopp used to render the boats onto computer matrix. The while loop run until it matches the size of the boats
         while(amountLoop < boatSize) {
-          std::cout<<s<<v1<<"\n";
-        computer[s][v1]=1;//Vertical 
+        computer[s][pointerOfAiBoat]=boatSize;//Vertical 
         amountLoop++;
         s++;
         }
      }else{
-       int s=v2;
-      std::cout<<"\n"<<boatSize<<"\n";
+       int s=pointerOfAiBoat;
+       //while lopp used to render the boats onto computer matrix. The while loop run until it matches the size of the boats
         while(amountLoop < boatSize) {
-          std::cout<<v2<<s<<"\n";
-        computer[v1][s]=2;//horizontal
+        computer[pointerOfAiBoat][s]=boatSize;//horizontal
         amountLoop++;
         s++;
       }
     }
-    v3++;
-    v4++;
+    amountOfAiBoats++;
+    nameOfAiBoats++;
     amountLoop=0;
   }
-//  int s=v1;//make the variable changeable with v1
-}
-
+}//Done renaming variables 
 
 
 bool Attack(int x, int y)
@@ -400,21 +387,60 @@ bool Attack(int x, int y)
 
 void computerbrain(){
    srand((unsigned) time(0));
-   int aiNumber = (rand() % 9) + 1;
-   int aiNumber2 = (rand() % 9) + 1;
-  if (matrix[aiNumber][aiNumber2] == 1 || matrix[aiNumber][aiNumber2] == 2)
-	{
-		matrix[aiNumber][aiNumber2]=5;
-    cout << "You sunk the battleship! :)" << endl;
-    cout<<"Number 1 for random: "<<aiNumber<<" Number 2 for random: "<<aiNumber2;
+   int aiNumber = (rand() % 9) + 1;//generates random numbers for the y-axis for the user board 
+   int aiNumber2 = (rand() % 9) + 1;//generates random numbers for the x-axis for the user board 
+  if (matrix[aiNumber][aiNumber2] == 2){
+		matrix[aiNumber][aiNumber2]=9;//change the matrix from 2 to 9 mean hit 
+    lifePointPatrolBoatAI++;
+    aiScore++;//increment score if computer hit a boat 
+    cout<<lifePointPatrolBoatAI;
+    lifePointPatrolBoatAI++;
+    cout << "The computer has hit your the patrol Boat! :)" << endl;
+    if(lifePointPatrolBoatAI == 2){
+      cout<<"The computer has sunked your Patrol board"<<"\n";
+    }
 		// return true;
-	}
-  cout<<"Number 1 for random: "<<aiNumber<<"\n";
-  cout<<" Number 2 for random: "<<aiNumber2<<"\n";
-  matrix[aiNumber][aiNumber2]=8;
-  cout << "Sorry, no ship at that position!" << endl;
-	// return false;
-
+	}else if(matrix[aiNumber][aiNumber2] == 3){
+    matrix[aiNumber][aiNumber2]=9;//change the matrix from 3 to 9 mean hit 
+    lifePointSubmarineAI++;
+    aiScore++;//increment score if computer hit a boat 
+    cout << "The computer has hit your the Submarine! :)" << endl;
+    if(lifePointSubmarineAI== 3){
+      cout<<"The computer has sunked your Submarine"<<"\n";
+    }
+		// return true;
+  }else if(matrix[aiNumber][aiNumber2] == 3){
+    matrix[aiNumber][aiNumber2]=9;//change the matrix from 3 to 9 mean hit 
+    lifePointDestoyerAI++;
+    aiScore++;//increment score if computer hit a boat 
+    cout << "The computer has hit your the Destoyer! :)" << endl;
+    if(lifePointDestoyerAI == 3){
+      cout<<"The computer has sunked your Destroyer"<<"\n";
+    }
+		// return true;
+  }else if(matrix[aiNumber][aiNumber2] == 4){
+    matrix[aiNumber][aiNumber2]=9;//change the matrix from 4 to 9 mean hit 
+    lifePointBattleshipAI++;
+    aiScore++;//increment score if computer hit a boat 
+    cout << "The computer has hit your the battleship! :)" << endl;
+    if(lifePointBattleshipAI == 4){
+      cout<<"The computer has sunked your Battleship"<<"\n";
+    }
+		// return true;
+  }else if(matrix[aiNumber][aiNumber2] == 5){
+    matrix[aiNumber][aiNumber2]=9;//change the matrix from 5 to 9 mean hit 
+    lifePointCarrierAI++;
+    aiScore++;//increment score if computer hit a boat 
+    cout << "The computer has hit your the Carrier! :)" << endl;
+    if(lifePointCarrierAI== 5){
+      cout<<"The computer has sunked your Carrier"<<"\n";
+    }
+		// return true;
+  }else{
+    matrix[aiNumber][aiNumber2]=8;//if the computer miss the shot 
+    cout << "The computer has missed, no ship at that position!" << endl;
+	  // return false;
+  }
 }
 
 int main() 
