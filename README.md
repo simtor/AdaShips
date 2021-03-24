@@ -11,7 +11,7 @@ My solution was to create two boards using 2D arrays. It would allow me to push 
 # UML style diagram illustrating initial overall solution:
 
 My UML represents how my code works and how they function are related to each other. As my code doesn't have classes 
-I didn't use classes or serrated the code into files. The UML is a way to visualize the way the code works.
+I didn't use classes or separated the code into files. The UML is a way to visualize the way the code works and how data flows.
 
 ![alt text](https://github.com/simtor/AdaShips/blob/main/Screenshot%202021-03-24%20at%2012.01.33.png)
 
