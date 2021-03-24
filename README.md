@@ -71,5 +71,12 @@ Boat: Patrol Boat, 2
 # Initial object-oriented design ideas and plan of phased breakdown into smaller tasks:
 
 
+# Reflection on key design challenges, innovations and how I solved them
+
+Design challenges are that the board is made with numbers makes it harder to find other numbers, the board starts t. hurt your eye after a bit, so if I had more time I would have to change the design of the board letter, this would help with usability fo the program.
+
+There are still bugs in the code as sometimes the boats are over each other meaning that the score wouldn't work.  I would fix this problem by using another random engine generator and also moving the code from a function to the main.
+
+For innovation would introduce player vs player, also AI vs AI would have been fun if I had more time to do them. 
 
 Created by Simone Ram🐏
