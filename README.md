@@ -34,7 +34,7 @@ I worked in an agile environment so I kept improving my solution every time, you
 - Turns for each player shooting torpedoes 
 - The game is won once a player has not boats left 
 - Record the location of the boats and shot that was hit or miss
-- The location is going to  be like A4 or F4
+- The location is going to  be like 4A or 4F
 
 ####  -------------Boats----------------
     Carrier - Length 5
@@ -78,10 +78,10 @@ As you can see above me I have a list of tasks which I used to track my developm
 
 # Reflection on key design challenges, innovations and how I solved them
 
-Design challenges are that the board is made with numbers makes it harder to find other numbers, the board starts t. hurt your eye after a bit, so if I had more time I would have to change the design of the board letter, this would help with usability fo the program.
+Design challenges are that the board is made with numbers makes it harder to find other numbers, the board starts to hurt your eye after a bit, so if I had more time I would have to change the design of the board letter, this would help with usability fo the program.
 
-There are still bugs in the code as sometimes the boats are over each other meaning that the score wouldn't work.  I would fix this problem by using another random engine generator and also moving the code from a function to the main.
+There are still bugs in the code as sometimes the boats are over each other meaning that the score wouldn't work.  I would fix this problem by using another random engine generator and also moving the code from a function to the main. This problem was noticed too late to fix it properly. 
 
-For innovation would introduce player vs player, also AI vs AI would have been fun if I had more time to do them. 
+For innovation would introduce player vs player, also AI vs AI it would have been fun if I had more time to do them. 
 
 Created by Simone Ram🐏
