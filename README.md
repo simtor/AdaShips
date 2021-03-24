@@ -36,19 +36,19 @@ I worked in an agile environment so I kept improving my solution every time, you
 - Record the location of the boats and shot that was hit or miss
 - The location is going to  be like A4 or F4
 
--------------Boats----------------
+####  -------------Boats----------------
     Carrier - Length 5
     Battleship - Length 4
     Destroyer - Length 3
     Submarine - Length 3
     Patrol Boat - Length 2
 
------------(player v computer)----------
+#### -----------(player v computer)----------
 The real player set up the board first  and the computer should do it automatically
 The AI should be able to fire torpedoes at the opponent 
 We need to indicate if ships are sunk or not
 
-------------------------Pass Criteria--------------------
+####  ------------------------Pass Criteria--------------------
 - Should be able to  read ‘adaship_config.ini’ and get this information:
 Board: 10x10
 Boat: Carrier, 5
@@ -56,6 +56,7 @@ Boat: Battleship, 4
 Boat: Destroyer, 3
 Boat: Submarine, 3
 Boat: Patrol Boat, 2
+
 - Set up an interface 
 - Menu 
 - Place the ships on the board 
