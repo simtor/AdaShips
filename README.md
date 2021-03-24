@@ -10,6 +10,7 @@ Summary and review of the problem, overall proposed solution:
 
 UML style diagram illustrating initial overall solution:
 
+![alt text](https://github.com/simtor/AdaShips/blob/main/UMLBS%20(2).png)
 
 
 Initial working plan, overall approach, development strategy and approach to quality:
